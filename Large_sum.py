@@ -7,7 +7,9 @@ class sum():
         self.out = []
         self.out1 = []
         self.inputs1 = input("第一个数组:")
+        print("输入长度：",len(self.inputs1))
         self.inputs2 = input("第二个数组:")
+        print("输入长度：",len(self.inputs2))
         self.in1 = ''
         self.in2 = ''
         self.in1_lis = []
@@ -96,7 +98,7 @@ class sum():
                 new_out.append('.')
                 out = new_out
                 out1 = out1[1:]
-                print(new_out,'---------------')
+                # print(new_out,'---------------')
             else:
                 out.append('.')
             # print(out,out1,'111111111111111111')
@@ -104,8 +106,9 @@ class sum():
         else:
             in1_p, in2_p = self.padding(in1_lis[0], in2_lis[0])
             state_sum = self.summation(in1_p, in2_p, out)
+            # print(out)
             if state_sum:
-                in1_p, in2_p = self.padding(''.join(out), '1')
+                in1_p, in2_p = self.padding(''.join(out), '0')
                 self.summation(in1_p, in2_p, new_out)
                 out = new_out
         return out
@@ -182,24 +185,32 @@ class sum():
                 if symbol1:
                     out.insert(0,'-')
                 print(''.join(out))
+                print("输出长度: ",len(''.join(out)))
             elif le2 > le1:
                 out = self.list_differencing(in2_lis, in1_lis, self.out)
                 if symbol2:
                     out.insert(0, '-')
                 print(''.join(out))
+                print("输出长度: ", len(''.join(out)))
             else:
                 if int(in1_lis[0][0]) > int(in2_lis[0][0]):
                     out = self.list_differencing(in1_lis, in2_lis, self.out)
+                    if symbol1:
+                        out.insert(0,'-')
                 else:
                     out = self.list_differencing(in2_lis, in1_lis, self.out)
+                    if symbol2:
+                        out.insert(0,'-')
                 print(''.join(out))
-
+                print("输出长度: ", len(''.join(out)))
         elif symbol1 and symbol2:# 都为负数
             out = self.list_summation(in1_lis, in2_lis, self.out)
             print('-'+''.join(out))
+            print("输出长度: ", len(''.join(out)))
         else:#都为正数
             out = self.list_summation(in1_lis, in2_lis, self.out)
             print(''.join(out))
+            print("输出长度: ", len(''.join(out)))
 
 if __name__ == "__main__":
 
