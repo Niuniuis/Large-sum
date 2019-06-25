@@ -133,6 +133,17 @@ class sum():
         else:
             return in1, in2
 
+    def compare(self,in1_lis,in2_lis):
+        if len(in1_lis)>len(in2_lis):
+            return True
+        elif len(in2_lis)>len(in1_lis):
+            return False
+        for i in range(len(in1_lis)):
+            for j in range(len(in1_lis[i])):
+                if int(in1_lis[i][j]) > int(in2_lis[i][j]):
+                    return True
+                elif int(in1_lis[i][j]) < int(in2_lis[i][j]):
+                    return False
 
     def verify(self):
         in1 = self.inputs1
@@ -197,10 +208,21 @@ class sum():
                     out = self.list_differencing(in1_lis, in2_lis, self.out)
                     if symbol1:
                         out.insert(0,'-')
-                else:
+                elif int(in1_lis[0][0]) < int(in2_lis[0][0]):
                     out = self.list_differencing(in2_lis, in1_lis, self.out)
                     if symbol2:
                         out.insert(0,'-')
+                else:
+                    state = self.compare(in1_lis,in2_lis)
+                    if state:
+                        out = self.list_differencing(in1_lis, in2_lis, self.out)
+                        if symbol1:
+                            out.insert(0, '-')
+                    else:
+                        out = self.list_differencing(in2_lis, in1_lis, self.out)
+                        if symbol2:
+                            out.insert(0, '-')
+
                 print(''.join(out))
                 print("输出长度: ", len(''.join(out)))
         elif symbol1 and symbol2:# 都为负数
